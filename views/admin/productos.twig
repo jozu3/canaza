@@ -1,0 +1,63 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %}
+<div class="row">
+	<div class="col-md-3">
+		<div><a href="{{ 'admin/productos/create' | url }}" class="btn btn-primary">Ingresar</a></div>
+		<div><p id="edit-prod" class="btn btn-primary">Editar</p></div>
+	</div>
+	<div class="col-md-9">			
+		<div class="container"> 
+			{% if errors%}
+				{% include('partials/errors.twig') %}
+			{% endif %}
+			{% if result %}
+				<div class="alert alert-success">Stock Actualizado.!</div>
+			{% endif %}
+			<table class="table">	
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Stock actual</th>
+						<th>Precio de costo</th>
+						<th>Precio unit.</th>
+						<th>Precio por docena</th>
+						<th>Precio por caja</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for productos in productos %}
+						<form method="post">
+							<tr>
+								<td>{{productos.pr_nombre}}</td>
+								<td> 
+									<input id="pr{{productos.id}}" name="pr-stac" type="number" class="pr-stac form-control" value="{{productos.pr_stockactual}}" readonly="readonly">
+									<input type="text" name="idprod" hidden="true" value="{{ productos.id }}">
+								</td>
+								<td>S/ {{productos.pr_p_costo}}</td>
+								<td>S/ {{productos.pr_p_unidad}}</td>
+								<td>S/ {{productos.pr_p_docena}}</td>
+								<td>S/ {{productos.pr_p_caja}}</td>
+								<td>
+									<div name="editar-prod" class="pr{{productos.id}} btn btn-success" hidden="true">
+										<i class="fas fa-edit" ></i>
+									</div>
+									<button type="submit" name="grabar-prod" class="grpr{{ productos.id }} btn btn-primary" hidden="true">
+										<i class="fa fa-check"></i>
+									</button>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</form>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

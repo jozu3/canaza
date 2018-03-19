@@ -1,0 +1,35 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %} 
+	{% if errors%}
+		{% include('partials/errors.twig') %}
+	{% endif %}
+	{% if result %}
+		<div class="alert alert-success">Cliente registrado.!</div>
+	{% endif %}
+	<form method="post">
+		<div class="input-cl">
+		<div class="form-group in-cl">
+			<span>Nombre</span>
+			<input type="text" class="form-control" name="cl_nombre" id="cl_nombre">
+		</div>
+		<div class="form-group in-cl">
+			<span>Documento de Identidad</span>
+			<input type="number" class="form-control" name="cl_docid" id="cl_docid">
+		</div>
+		<div class="form-group in-cl">
+			<span>Dirección</span>
+			<input type="text" class="form-control" name="cl_direcc" id="cl_direcc">
+		</div>
+		<div class="form-group in-cl">
+			<span>Teléfono</span>
+			<input type="number" class="form-control" name="cl_telef" id="cl_telef">
+		</div>
+		<a class="btn btn-danger" href="{{ 'admin/clientes' | url }}" >Volver</a>
+		
+		<button type="submit" name="" class="btn btn-primary">
+			<i class="fa fa-check"></i>
+		</button>
+		</div>
+	</form>
+{% endblock %}

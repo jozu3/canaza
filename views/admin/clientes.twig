@@ -1,0 +1,41 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %}
+<div class="row">
+	<div class="col-md-3">
+		<div><a href="{{ 'admin/clientes/create' | url }}" class="btn btn-primary">Ingresar</a></div>
+		<div><p id="edit-cli" class="btn btn-primary">Editar</p></div>
+	</div>
+	<div class="col-md-9">			
+		<div class="container"> 
+			{% if errors%}
+				{% include('partials/errors.twig') %}
+			{% endif %}
+			{% if result %}
+				<div class="alert alert-success">Cliente Actualizadp.</div>
+			{% endif %}
+			<table class="table">	
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Doc. de Identidad</th>
+						<th>Direccion</th>
+						<th>Telefono</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for clientes in clientes %}
+							<tr>
+								<td>{{clientes.nombre}}</td>
+								<td>{{clientes.doc_identidad}}</td>
+								<td>{{clientes.direccion}}</td>
+								<td>{{clientes.telefono}}</td>
+							</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

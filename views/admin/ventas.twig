@@ -1,0 +1,53 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %}
+<div class="row">
+	<div class="col-md-9">			
+		<div class="container"> 
+			{% if errors%}
+				{% include('partials/errors.twig') %}
+			{% endif %}
+			{% if result %}
+				<div class="alert alert-success">postindex realizado.!</div>
+			{% endif %}
+			<table class="table">	
+				<thead>
+					<tr>
+						<th>N° Venta</th>
+						<th>Cliente</th>
+						<th>Fecha de emisión</th>
+						<th>Subtotal</th>
+						<th>IGV</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ventas in ventas %}
+						<form method="post">
+							<tr>
+								<td>{{ ventas.id }}</td>
+								<td>
+									{% for clientes in clientes %}
+										{% if ventas.cliente == clientes.id %}
+											{{ clientes.nombre }}		
+										{% endif %}
+									{% endfor %}
+								</td>
+								<td>{{ ventas.fecha_venta | date("d-m-y") }}</td>
+								<td>{{ ventas.subtotal }}</td>
+								<td>{{ ventas.igv }}</td>
+								<td>{{ ventas.total_venta }}</td>
+							</tr>
+						</form>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div><a href="{{ 'admin/ventas/create' | url }}" class="btn btn-primary">Vender</a></div>
+		<div><p id="edit-venta" class="btn btn-primary">Corregir</p></div>
+	</div>
+</div>
+
+{% endblock %}

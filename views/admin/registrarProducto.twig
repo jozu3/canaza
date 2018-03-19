@@ -1,0 +1,48 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %} 
+	{% if errors%}
+		{% include('partials/errors.twig') %}
+	{% endif %}
+	{% if result %}
+		<div class="alert alert-success">Producto guardado.!</div>
+	{% endif %}
+	<form method="post">
+		<div class="input-pr">
+		<div class="form-group in-pr">
+			<span>Nombre</span>
+			<input type="text" class="form-control ic-pr" name="pr_nombre" id="pr_nombre">
+		</div>
+		<div class="form-group in-pr">
+			<span>Categoría</span>
+			<select type="text" class="form-control ic-pr" name="pr_categoria" id="pr_categoria">
+				<option value="-1">[Categoría]</option>
+				{% for categorias in categorias %}
+					<option value="{{ categorias.id }}">{{ categorias.descripcion }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="form-group in-pr">
+			<span>Precio de costo</span>
+			<input type="number" class="form-control ic-pr" name="pr_pcosto" id="pr_pcosto">
+		</div>
+		<div class="form-group in-pr">
+			<span>Precio Unitario</span>
+			<input type="number" class="form-control ic-pr" name="pr_punit" id="pr_punit">
+		</div>
+		<div class="form-group in-pr">
+			<span>Precio por docena</span>
+			<input type="number" class="form-control ic-pr" name="pr_pdocena" id="pr_pdocena">
+		</div>
+		<div class="form-group in-pr">
+			<span>Precio por caja</span>
+			<input type="number" class="form-control ic-pr" name="pr_pcaja" id="pr_pcaja">
+		</div>
+		<div class="form-group in-pr">
+			<span>Cantidad que ingresa</span>
+			<input type="number" class="form-control ic-pr" name="pr_cantidading" id="pr_cantidading">
+		</div>
+		<button type="submit" class="btn btn-primary">Registrar</button>
+		</div>
+	</form>
+{% endblock %}

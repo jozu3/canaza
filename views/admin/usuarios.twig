@@ -1,0 +1,27 @@
+{% extends 'admin/index.twig' %}
+
+{% block sectionrigth %} 
+
+<div class="row">
+			<table class="table">	
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Email</th>
+						<th>Usuario</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for usuarios in usuarios %}
+						<tr>
+							<td>{{usuarios.us_nombre}}</td>
+							<td>{{usuarios.us_email}}</td>
+							<td>{{usuarios.us_usuario}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+</div>
+
+{% endblock %}
